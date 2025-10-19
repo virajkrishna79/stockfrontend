@@ -7,6 +7,17 @@ export const fetchNews = async (limit = 10) => {
     
     const response = await fetch(`${backendUrl}/api/news?limit=${limit}`);
     console.log('Response status:', response.status);
+    const BACKEND_URL = 'https://stock-recommendation-website-production.up.railway.app';
+
+export const fetchNews = async (limit = 10) => {
+  console.log('fetchNews called with limit:', limit);
+  
+  try {
+    const backendUrl = BACKEND_URL;
+    console.log('Fetching from:', `${backendUrl}/api/news?limit=${limit}`);
+    
+    const response = await fetch(`${backendUrl}/api/news?limit=${limit}`);
+    console.log('Response status:', response.status);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -31,7 +42,7 @@ export const subscribeToNewsletter = async (email) => {
   console.log('subscribeToNewsletter called with email:', email);
   
   try {
-    const backendUrl = 'https://stock-recommendation-website-production.up.railway.app';
+    const backendUrl = BACKEND_URL;
     console.log('Subscribing to:', `${backendUrl}/api/newsletter/subscribe`);
     
     const response = await fetch(`${backendUrl}/api/newsletter/subscribe`, {
@@ -62,3 +73,5 @@ export const subscribeToNewsletter = async (email) => {
     throw error;
   }
 };
+
+// Add any other API functions you need here
